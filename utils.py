@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 import json
 
 def save_config(config: dict) -> bool:
-  if type(config) != type(dict):
-    raise ValueError("Invalid type of config")
-    return False
+  if type(config) != type({}):
+    err = 'Invalid type of config.'
+    raise ValueError(err)
   try:
     with open('config.json', 'w') as file:
       json_config = json.dumps(config)
