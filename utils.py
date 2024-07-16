@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from os.path import realpath, dirname
 import json
 
 def save_config(config: dict) -> bool:
@@ -6,18 +7,20 @@ def save_config(config: dict) -> bool:
     err = 'Invalid type of config.'
     raise ValueError(err)
   try:
-    with open('config.json', 'w') as file:
-      json_config = json.dumps(config)
+    with open(f'{realpath(dirname(__file__))}/config.json', 'w') as file:
+      json_config = json.dumps(config, indent=2)
       file.write(json_config)
-  except Exception as err:
-    print('Error:', err)
+      return True
+  except:
     return False
-  return True
 
 def load_config() -> dict:
-  with open('config.json', 'r') as file:
-    json_text = file.read()
-    return json.loads(json_text)
+  try:
+    with open(f'{realpath(dirname(__file__))}/config.json', 'r') as file:
+      json_text = file.read()
+      return json.loads(json_text)
+  except FileNotFoundError:
+    return None
   
 def get_curr_date() -> datetime.date:
   return datetime.now().date()
@@ -37,9 +40,3 @@ def parse_str_date(str_date: str, date_format: str = '%d-%m-%Y') -> datetime.dat
 
 def stringify_date(date: datetime, date_format: str = '%d-%m-%Y') -> str:
   return datetime.strftime(date, date_format)
-
-save_config(["olá", "tudo", "bem"])
-
-teste = load_config()
-
-print(teste)
