@@ -2,10 +2,15 @@ import tkinter as tk
 from tkinter import ttk, simpledialog
 from utils import *
 from setupwindow import SetupWindow
+from createtaskwindow import CreateTaskWindow
 
 
 def open_setup_window() -> None:
   SetupWindow()
+
+
+def open_create_task_window() -> None:
+  CreateTaskWindow()
 
 
 def main() -> None:
@@ -25,6 +30,7 @@ def main() -> None:
   root.config(padx=10, pady=10)
 
   openSetupWindowButton = ttk.Button(root, text='Open Setup Window', command=open_setup_window).pack(pady=10)
+  openCreateTaskWindowButton = ttk.Button(root, text='Create New Task', command=open_create_task_window).pack(pady=10)
 
   root.mainloop()
 
