@@ -1,6 +1,12 @@
 import tkinter as tk
-from tkinter import simpledialog
+from tkinter import ttk, simpledialog
 from utils import *
+from setupwindow import SetupWindow
+
+
+def open_setup_window() -> None:
+  SetupWindow()
+
 
 def main() -> None:
   # Checks if config.json already exists and create it case it doesn't
@@ -17,6 +23,8 @@ def main() -> None:
   root.title('Task Manager App')
   root.geometry('480x360')
   root.config(padx=10, pady=10)
+
+  openSetupWindowButton = ttk.Button(root, text='Open Setup Window', command=open_setup_window).pack(pady=10)
 
   root.mainloop()
 
