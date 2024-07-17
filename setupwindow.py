@@ -82,7 +82,7 @@ class SetupWindow(tk.Toplevel):
     alarm_value = self.alarmValue.get()
     alarm_advance_value = self.alarmAdvanceValue.get()
 
-    if not re.match('^([01]\d|2[0-3]):[0-5]\d$', alarm_value):
+    if not re.match('^([01]\\d|2[0-3]):[0-5]\\d$', alarm_value):
       self.alarmValue.set('10:00')
       messagebox.showerror('Invalid Time!', 'O horário passado não é válido!\nDigite o horário no padrão 24 horas (HH:MM)')
       self.focus_set()
