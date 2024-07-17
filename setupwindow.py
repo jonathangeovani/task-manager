@@ -13,8 +13,8 @@ class SetupWindow(tk.Toplevel):
     self.resizable(False, False)
 
 
-    self.alarm_checker = self.register(self.validate_alarm_entry)
-    self.alarm_advance_checker = self.register(self.validate_alarm_advance_entry)
+    self.alarm_checker = self.register(validate_alarm)
+    self.alarm_advance_checker = self.register(validate_alarm_advance)
 
     self.alarmValue = StringVar(self, self.setup.get('alarm'))
     self.alarmValue.trace_add('write', self.format_alarm_value)
@@ -34,14 +34,6 @@ class SetupWindow(tk.Toplevel):
 
     self.saveConfigButton = ttk.Button(self, text='Salvar', command=self.update_config).grid(row=2, column=0, columnspan=2, padx=(10,4), pady=(5, 0), sticky='nwse')
     self.resetConfigButton = ttk.Button(self, text='Restaurar', command=self.reset_config).grid(row=2, column=2, columnspan=2, padx=(4,0), pady=(5, 0), sticky='nwse')
-
-  
-  def validate_alarm_entry(self, text: str) -> bool:
-    return (re.search('^[0-9:]+$', text) or len(text) == 0) and len(text) <= 5
-  
-
-  def validate_alarm_advance_entry(self, text: str) -> bool:
-    return (re.search('^[0-7]+$', text) or len(text) == 0) and len(text) <= 2
   
 
   def format_alarm_value(self, *args) -> None:
