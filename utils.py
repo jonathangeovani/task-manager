@@ -59,3 +59,7 @@ def validate_alarm(text: str) -> bool:
 
 def validate_alarm_advance(text: str) -> bool:
   return (re.search('^[0-7]+$', text) or len(text) == 0) and len(text) <= 2
+
+
+def validate_date(text: str) -> bool:
+  return (re.search('^[0-9-]+$', text) or len(text) == 0) and len(text) <= 10
